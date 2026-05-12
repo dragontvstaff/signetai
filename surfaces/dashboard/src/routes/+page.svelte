@@ -297,6 +297,7 @@ $effect(() => {
 <OnboardingModal
 	configFiles={data.configFiles}
 	memoryStats={data.memoryStats}
+	harnesses={data.harnesses}
 	{daemonStatus}
 	onnavigate={setTab}
 />
