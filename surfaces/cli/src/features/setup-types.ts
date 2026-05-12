@@ -23,6 +23,7 @@ export interface SetupWizardOptions {
 	disableSignetSecrets?: boolean;
 	withGraphiq?: boolean;
 	disableGraphiq?: boolean;
+	setupMode?: string;
 }
 
 export interface SetupDeps {

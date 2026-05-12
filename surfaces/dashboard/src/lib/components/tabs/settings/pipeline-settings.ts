@@ -125,89 +125,24 @@ export function resolveSynthesisEnabled(agent: unknown): boolean {
 	if (resolveSynthesisProvider(agent) === "none") return false;
 	return readBoolean(pipeline, "synthesis", "enabled") ?? true;
 }
-export type AcpxDashboardAgent = "codex" | "claude-code" | "opencode";
-
-export const ACPX_DASHBOARD_AGENT_OPTIONS: Array<{
-	readonly value: AcpxDashboardAgent;
-	readonly label: string;
-	readonly model: string;
-}> = [
-	{ value: "codex", label: "Codex CLI", model: "gpt-5-codex-mini" },
-	{ value: "claude-code", label: "Claude Code", model: "claude-haiku-4-5" },
-	{ value: "opencode", label: "OpenCode", model: "anthropic/claude-haiku-4-5-20251001" },
-];
-
-export function defaultAcpxDashboardAgent(agentConfig: unknown): AcpxDashboardAgent {
-	const inference = toRecord(toRecord(agentConfig)?.inference);
-	const target = toRecord(toRecord(inference?.targets)?.["background-acpx"]);
-	const acpx = toRecord(target?.acpx);
-	const configured = acpx?.agent;
-	if (configured === "claude-code" || configured === "opencode" || configured === "codex") return configured;
-	const harnesses = toRecord(agentConfig)?.harnesses;
-	if (Array.isArray(harnesses)) {
-		for (const harness of harnesses) {
-			if (harness === "codex" || harness === "claude-code" || harness === "opencode") return harness;
-		}
-	}
-	return "codex";
-}
-
-export function defaultAcpxDashboardModel(agent: AcpxDashboardAgent): string {
-	return ACPX_DASHBOARD_AGENT_OPTIONS.find((option) => option.value === agent)?.model ?? "gpt-5-codex-mini";
-}
-
-export function applyAcpxDashboardSetup(
+export function applyRecommendedPipelineSetup(
 	agentConfig: Record<string, unknown>,
-	options: { readonly agent: AcpxDashboardAgent; readonly model?: string },
+	options: { readonly provider?: PipelineProviderChoice; readonly model?: string } = {},
 ): void {
-	const model = options.model?.trim() || defaultAcpxDashboardModel(options.agent);
+	const provider = options.provider ?? "acpx";
+	const model = options.model?.trim() || defaultPipelineModel(provider);
 	const memory = ensureRecord(agentConfig, "memory");
 	const pipeline = ensureRecord(memory, "pipelineV2");
-	pipeline.enabled = true;
-	pipeline.extractionProvider = "acpx";
+	pipeline.enabled = provider !== "none";
+	pipeline.extractionProvider = provider;
 	pipeline.extractionModel = model;
-	pipeline.semanticContradictionEnabled = true;
-	pipeline.graphEnabled = true;
-	pipeline.rerankerEnabled = true;
+	pipeline.semanticContradictionEnabled = provider !== "none";
+	pipeline.graphEnabled = provider !== "none";
+	pipeline.rerankerEnabled = provider !== "none";
 	pipeline.synthesis = {
-		enabled: true,
-		provider: "acpx",
+		enabled: provider !== "none",
+		provider,
 		model,
 		timeout: 120000,
 	};
-
-	const inference = ensureRecord(agentConfig, "inference");
-	const targets = ensureRecord(inference, "targets");
-	targets["background-acpx"] = {
-		executor: "acpx",
-		acpx: {
-			agent: options.agent,
-			package: "acpx@0.7.0",
-			version: "0.7.0",
-			mode: "exec",
-			permissions: "deny-all",
-			hooks: "disabled",
-			terminal: "inherit",
-		},
-		models: {
-			default: {
-				model,
-				reasoning: "medium",
-				toolUse: true,
-				costTier: "medium",
-			},
-		},
-	};
-	const policies = ensureRecord(inference, "policies");
-	policies["background-acpx"] = {
-		mode: "automatic",
-		defaultTargets: ["background-acpx/default"],
-		fallbackTargets: ["background-acpx/default"],
-	};
-	const taskClasses = ensureRecord(inference, "taskClasses");
-	taskClasses.memory_extraction = { reasoning: "medium", toolsRequired: true, privacy: "restricted_remote" };
-	taskClasses.session_synthesis = { reasoning: "medium", toolsRequired: true, privacy: "restricted_remote" };
-	const workloads = ensureRecord(inference, "workloads");
-	workloads.memoryExtraction = { target: "background-acpx/default", taskClass: "memory_extraction" };
-	workloads.sessionSynthesis = { target: "background-acpx/default", taskClass: "session_synthesis" };
 }

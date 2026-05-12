@@ -114,6 +114,8 @@ export async function setupWizard(options: SetupWizardOptions, deps: SetupDeps):
 	const requestedEmbeddingProvider = deps.normalizeChoice(rawEmbeddingProvider, EMBEDDING_PROVIDER_CHOICES);
 	const rawExtractionProvider = deps.normalizeStringValue(options.extractionProvider);
 	const requestedExtractionProvider = deps.normalizeChoice(rawExtractionProvider, EXTRACTION_PROVIDER_CHOICES);
+	const rawSetupMode = deps.normalizeStringValue(options.setupMode);
+	const requestedSetupMode = deps.normalizeChoice(rawSetupMode, ["terminal", "dashboard"] as const);
 	const existingName = readString(existingConfig.name) ?? readString(existingAgent.name) ?? "My Agent";
 	const existingDesc =
 		readString(existingConfig.description) ?? readString(existingAgent.description) ?? "Personal AI assistant";
@@ -150,6 +152,9 @@ export async function setupWizard(options: SetupWizardOptions, deps: SetupDeps):
 		failSetupValidation(
 			`Unknown --extraction-provider value: ${rawExtractionProvider}. Valid choices: ${EXTRACTION_PROVIDER_CHOICES.join(", ")}.`,
 		);
+	}
+	if (rawSetupMode && !requestedSetupMode) {
+		failSetupValidation(`Unknown --setup-mode value: ${rawSetupMode}. Valid choices: terminal, dashboard.`);
 	}
 	const unknownHarnessValues = findUnknownHarnessValues(options.harness, deps);
 	if (nonInteractive && unknownHarnessValues.length > 0) {
@@ -406,18 +411,76 @@ export async function setupWizard(options: SetupWizardOptions, deps: SetupDeps):
 
 		const setupMethod = nonInteractive
 			? "new"
-			: await select({
-					message: "How would you like to set up?",
-					choices: [
-						{ value: "new", name: "Create new agent identity" },
-						{ value: "github", name: "Import from GitHub repository" },
-					],
-				});
+			: requestedSetupMode === "dashboard"
+				? "dashboard"
+				: await select({
+						message: "How would you like to set up?",
+						choices: [
+							{ value: "new", name: "Create new agent identity in terminal" },
+							{ value: "dashboard", name: "Create defaults and finish in dashboard" },
+							{ value: "github", name: "Import from GitHub repository" },
+						],
+					});
 
 		if (setupMethod === "github") {
 			mkdirSync(basePath, { recursive: true });
 			mkdirSync(join(basePath, "memory"), { recursive: true });
 			await deps.importFromGitHub(basePath);
+			return;
+		}
+		if (setupMethod === "dashboard") {
+			const deploymentType = requestedDeploymentType ?? "local";
+			const embeddingProvider = requestedEmbeddingProvider ?? defaultEmbeddingProviderForDeployment(deploymentType);
+			let embeddingModel = deps.normalizeStringValue(options.embeddingModel) || "nomic-embed-text-v1.5";
+			let embeddingDimensions = getEmbeddingDimensions(embeddingModel);
+			if (embeddingProvider === "native") {
+				embeddingModel = "nomic-embed-text-v1.5";
+				embeddingDimensions = 768;
+			}
+			const harnesses = normalizeHarnessList(options.harness, deps);
+			const extractionProvider = resolveSetupExtractionProvider({
+				deploymentType,
+				requestedProvider: requestedExtractionProvider,
+				preserveExisting: false,
+				detectedProvider,
+				availableProviders: availableToolExtractionProviders,
+				preferredHarnesses: harnesses,
+			});
+			const extractionModel =
+				deps.normalizeStringValue(options.extractionModel) || defaultExtractionModel(extractionProvider);
+			await runFreshSetup(
+				{
+					basePath,
+					agentName: deps.normalizeStringValue(options.name) || existingName,
+					agentDescription: deps.normalizeStringValue(options.description) || existingDesc,
+					networkMode: deps.normalizeChoice(options.networkMode, NETWORK_MODES) ?? "localhost",
+					harnesses,
+					openclawRuntimePath: deps.normalizeChoice(options.openclawRuntimePath, OPENCLAW_RUNTIME_CHOICES) ?? "plugin",
+					configureOpenClawWs: options.configureOpenclawWorkspace === true,
+					openclawConfigCount: new OpenClawConnector().getDiscoveredConfigPaths().length,
+					embeddingProvider,
+					embeddingModel,
+					embeddingDimensions,
+					extractionProvider,
+					extractionModel,
+					availableExtractionProviders: availableToolExtractionProviders,
+					acpxBin,
+					searchBalance: deps.parseSearchBalanceValue(options.searchBalance) ?? 0.7,
+					searchTopK: 20,
+					searchMinScore: 0.3,
+					memorySessionBudget: 2000,
+					memoryDecayRate: 0.95,
+					gitEnabled: options.skipGit !== true,
+					existingAgentsDir: existing.agentsDir,
+					nonInteractive: true,
+					openDashboard: true,
+					allowUnprotectedWorkspace: options.allowUnprotectedWorkspace === true,
+					createLocalBackup: options.createLocalBackup === true,
+					signetSecretsEnabled: await resolveSignetSecretsCorePluginSelection(basePath, true, options),
+					graphiqEnabled: await resolveGraphiqPluginSelection(basePath, true, options),
+				},
+				deps,
+			);
 			return;
 		}
 		console.log();
