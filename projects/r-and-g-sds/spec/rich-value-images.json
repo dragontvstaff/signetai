@@ -1,0 +1,89 @@
+{
+  "mechanism": "Excel 'image in cell' (_localImage rich value)",
+  "master": {
+    "present_parts": [
+      "xl/metadata.xml",
+      "xl/richData/rdrichvalue.xml",
+      "xl/richData/rdrichvaluestructure.xml",
+      "xl/richData/rdRichValueTypes.xml"
+    ],
+    "missing_parts": [
+      "xl/richData/richValueRel.xml",
+      "xl/richData/_rels/richValueRel.xml.rels"
+    ],
+    "rich_value_structures": [
+      "_error"
+    ],
+    "image_relationships": []
+  },
+  "sp0302": {
+    "present_parts": [
+      "xl/metadata.xml",
+      "xl/richData/rdrichvalue.xml",
+      "xl/richData/rdrichvaluestructure.xml",
+      "xl/richData/rdRichValueTypes.xml",
+      "xl/richData/richValueRel.xml",
+      "xl/richData/_rels/richValueRel.xml.rels"
+    ],
+    "missing_parts": [],
+    "rich_value_structures": [
+      "_error",
+      "_localImage"
+    ],
+    "image_relationships": [
+      {
+        "id": "rId1",
+        "target": "../media/image1.png"
+      },
+      {
+        "id": "rId2",
+        "target": "../media/image2.png"
+      },
+      {
+        "id": "rId3",
+        "target": "../media/image3.png"
+      },
+      {
+        "id": "rId4",
+        "target": "../media/image4.png"
+      }
+    ]
+  },
+  "sp0348": {
+    "present_parts": [
+      "xl/metadata.xml",
+      "xl/richData/rdrichvalue.xml",
+      "xl/richData/rdrichvaluestructure.xml",
+      "xl/richData/rdRichValueTypes.xml",
+      "xl/richData/richValueRel.xml",
+      "xl/richData/_rels/richValueRel.xml.rels"
+    ],
+    "missing_parts": [],
+    "rich_value_structures": [
+      "_error",
+      "_localImage"
+    ],
+    "image_relationships": [
+      {
+        "id": "rId1",
+        "target": "../media/image1.png"
+      },
+      {
+        "id": "rId2",
+        "target": "../media/image2.png"
+      },
+      {
+        "id": "rId3",
+        "target": "../media/image3.png"
+      },
+      {
+        "id": "rId4",
+        "target": "../media/image4.png"
+      },
+      {
+        "id": "rId5",
+        "target": "../media/image5.png"
+      }
+    ]
+  }
+}

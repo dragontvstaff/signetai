@@ -1,0 +1,245 @@
+{
+  "defined_names": {
+    "Location": {
+      "defined_name": "Lists!$AA$67:$AA$68",
+      "values": [
+        "Exterior",
+        "Interior"
+      ]
+    },
+    "Main_Category": {
+      "defined_name": "Lists!$A$2:$A$30",
+      "values": [
+        "Select One",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Sheath",
+        "Mux/Coupler",
+        "Mux/Coupler",
+        "Mux/Coupler",
+        "Mux/Coupler",
+        "Mux/Coupler",
+        "Fiber Tap/Tail",
+        "Fiber Tap/Tail",
+        "Fiber Tap/Tail",
+        "Fiber Tap/Tail",
+        "Fiber Tap/Tail",
+        "Node Cable",
+        "Node Cable",
+        "Node Cable",
+        "Node Cable",
+        "Node Cable",
+        "Demark",
+        "Demark"
+      ]
+    },
+    "Mux_Splitter_Manufacturer": {
+      "defined_name": "Lists!$AA$20:$AA$39",
+      "values": [
+        "AFL Tel",
+        "All Systems",
+        "Amphenol",
+        "Arris",
+        "Aurora",
+        "Cisco",
+        "CommScope",
+        "Corning",
+        "Finisar",
+        "II-VI Photonics",
+        "Infinera",
+        "Lumentum",
+        "Motorola",
+        "Net Tech",
+        "PPC",
+        "Radiant",
+        "TE Conn",
+        "TFC Amphenol",
+        "Times Fiber",
+        "Tyco"
+      ]
+    },
+    "Mux_Splitter_Type": {
+      "defined_name": "Lists!$AA$15:$AA$18",
+      "values": [
+        "CWDM",
+        "DWDM",
+        "BWDM",
+        "Splitter"
+      ]
+    },
+    "Node_Cable_Manufacturer": {
+      "defined_name": "Lists!$AA$65",
+      "values": [
+        "Amphenol"
+      ]
+    },
+    "Port_Config": {
+      "defined_name": "Lists!$AA$41:$AA$53",
+      "values": [
+        "1x2",
+        "1x3",
+        "1x4",
+        "1x8",
+        "1x16",
+        "1x24",
+        "1x32",
+        "1x64",
+        "4ch",
+        "8ch",
+        "12ch",
+        "16ch",
+        "20ch"
+      ]
+    },
+    "Ribbon": {
+      "defined_name": "Lists!$AA$9:$AA$10",
+      "values": [
+        "Yes",
+        "No"
+      ]
+    },
+    "Sheath_Manufacturer": {
+      "defined_name": "Lists!$AA$2:$AA$7",
+      "values": [
+        "AFL Tel",
+        "Amphenol",
+        "CommScope",
+        "Corning",
+        "Draka",
+        "Prysmian"
+      ]
+    },
+    "Splice_Type": {
+      "defined_name": "Lists!$AA$12:$AA$13",
+      "values": [
+        "Butt Splice",
+        "Ring Cut"
+      ]
+    },
+    "Submenu1": {
+      "defined_name": "Lists!$B$2:$B$30",
+      "values": [
+        "N/A",
+        "Name",
+        "Reel #",
+        "Sheath Mfr.",
+        "Mfg. Date",
+        "Fiber Count",
+        "Buffer Size",
+        "Buffer Type",
+        "Ribbon",
+        "Case Footage",
+        "Span Footage",
+        "Splice Type",
+        "Name",
+        "Mux/Coupler Type",
+        "Mux/Coupler Mfr.",
+        "Port Config",
+        "Channels/Split Rat.",
+        "Name",
+        "Type",
+        "Manufacturer",
+        "Ports",
+        "Tail Length",
+        "Name",
+        "Cable Mfr",
+        "Mfg. Date",
+        "Fiber Count",
+        "Length",
+        "Location",
+        "Port Count"
+      ]
+    },
+    "Submenu2": {
+      "defined_name": "Lists!$C$2:$C$29",
+      "values": [
+        "<Enter Name>",
+        "Sheath Mfr.",
+        "Ribbon",
+        "Splice Type",
+        "Mux/Coupler Type",
+        "Mux/Coupler Mfr.",
+        "Port Config",
+        "Tail Length",
+        "Cable Mfr",
+        "Location"
+      ]
+    },
+    "Tail_Length": {
+      "defined_name": "Lists!$AA$55:$AA$63",
+      "values": [
+        "100",
+        "250",
+        "500",
+        "750",
+        "1000",
+        "1500",
+        "1750",
+        "2000",
+        "2500"
+      ]
+    }
+  },
+  "equipment_categories": {
+    "Select One": [
+      "N/A"
+    ],
+    "Sheath": [
+      "Name",
+      "Reel #",
+      "Sheath Mfr.",
+      "Mfg. Date",
+      "Fiber Count",
+      "Buffer Size",
+      "Buffer Type",
+      "Ribbon",
+      "Case Footage",
+      "Span Footage",
+      "Splice Type"
+    ],
+    "Mux/Coupler": [
+      "Name",
+      "Mux/Coupler Type",
+      "Mux/Coupler Mfr.",
+      "Port Config",
+      "Channels/Split Rat."
+    ],
+    "Fiber Tap/Tail": [
+      "Name",
+      "Type",
+      "Manufacturer",
+      "Ports",
+      "Tail Length"
+    ],
+    "Node Cable": [
+      "Name",
+      "Cable Mfr",
+      "Mfg. Date",
+      "Fiber Count",
+      "Length"
+    ],
+    "Demark": [
+      "Location",
+      "Port Count"
+    ],
+    "Mux": [],
+    "Splitter": [
+      "remove 1x from sub cats - add "
+    ]
+  },
+  "inline_validations": [
+    {
+      "sqref": "H12:I12",
+      "kind": "list",
+      "formula1": "\"3M,ADC Tel,AFL Tel,AllSystems,Arris,Channel,Clearfield,CommScope,Corning,Fiberdyne,Fons,Keptel,Multilink,Raychem,TE,TVC,Tyco,Other\""
+    }
+  ]
+}

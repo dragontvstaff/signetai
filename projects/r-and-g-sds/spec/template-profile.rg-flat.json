@@ -1,0 +1,589 @@
+{
+  "profile_id": "rg-flat-2026-08",
+  "description": "Binding for the flattened Splicing Record variant that R&G actually files. Generated from the supplied blank master; do not hand-edit.",
+  "master": {
+    "file": "SDS-Template.xlsx",
+    "sha256": "f675b11fca3ea415f9c2e1c730d7a5e60bc44264a7241c266c51ddea92efcb4a"
+  },
+  "sheets": [
+    {
+      "name": "Splicing Record",
+      "state": "visible",
+      "part": "xl/worksheets/sheet1.xml"
+    },
+    {
+      "name": "Lists",
+      "state": "hidden",
+      "part": "xl/worksheets/sheet2.xml"
+    },
+    {
+      "name": "OTDR Shots",
+      "state": "hidden",
+      "part": "xl/worksheets/sheet3.xml"
+    },
+    {
+      "name": "Pictures",
+      "state": "visible",
+      "part": "xl/worksheets/sheet4.xml"
+    },
+    {
+      "name": "Example",
+      "state": "hidden",
+      "part": "xl/worksheets/sheet5.xml"
+    }
+  ],
+  "splicing_record": {
+    "sheet": "Splicing Record",
+    "single_fields": [
+      {
+        "id": "form_date",
+        "label_cell": "C3",
+        "label_text": "Date",
+        "value_cell": "C4",
+        "value_merge": "C4:D4",
+        "master_prefill": null,
+        "instruction": null,
+        "note": "Header date. Both samples carry a date one day after the photo EXIF date."
+      },
+      {
+        "id": "technician",
+        "label_cell": "E3",
+        "label_text": "Technician",
+        "value_cell": "E4",
+        "value_merge": "E4:G4",
+        "master_prefill": "<redacted:technician:13 chars>",
+        "instruction": null,
+        "note": "Prefilled in the blank master with a stale name."
+      },
+      {
+        "id": "business_partner",
+        "label_cell": "H3",
+        "label_text": "Business Partner",
+        "value_cell": "H4",
+        "value_merge": "H4:L4",
+        "master_prefill": "Sammons Construction",
+        "instruction": null,
+        "note": "Prefilled in the blank master ('Sammons Construction')."
+      },
+      {
+        "id": "job_number",
+        "label_cell": "C7",
+        "label_text": "Job #",
+        "value_cell": "C8",
+        "value_merge": "C8:D8",
+        "master_prefill": null,
+        "instruction": null,
+        "note": null
+      },
+      {
+        "id": "job_name",
+        "label_cell": "E7",
+        "label_text": "Job Name",
+        "value_cell": "E8",
+        "value_merge": "E8:G8",
+        "master_prefill": null,
+        "instruction": null,
+        "note": null
+      },
+      {
+        "id": "job_type",
+        "label_cell": "H7",
+        "label_text": "Job Type",
+        "value_cell": "H8",
+        "value_merge": "H8:J8",
+        "master_prefill": "SDU",
+        "instruction": null,
+        "note": "Prefilled in the blank master ('SDU')."
+      },
+      {
+        "id": "hub_headend",
+        "label_cell": "K7",
+        "label_text": "Hub/Headend",
+        "value_cell": "K8",
+        "value_merge": "K8:L8",
+        "master_prefill": null,
+        "instruction": null,
+        "note": null
+      },
+      {
+        "id": "enclosure_name",
+        "label_cell": "C11",
+        "label_text": "Name",
+        "value_cell": "C12",
+        "value_merge": "C12:E12",
+        "master_prefill": null,
+        "instruction": "Enclosure name as shown on design maps",
+        "note": null
+      },
+      {
+        "id": "enclosure_alt_name",
+        "label_cell": "F11",
+        "label_text": "Alternate Name",
+        "value_cell": "F12",
+        "value_merge": "F12:G12",
+        "master_prefill": null,
+        "instruction": "Alternate name known by",
+        "note": null
+      },
+      {
+        "id": "enclosure_manufacturer",
+        "label_cell": "H11",
+        "label_text": "Manufacturer",
+        "value_cell": "H12",
+        "value_merge": "H12:I12",
+        "master_prefill": "CommScope",
+        "instruction": "Enclosure manufacturer",
+        "note": "Only surviving dropdown on this sheet."
+      },
+      {
+        "id": "enclosure_type",
+        "label_cell": "J11",
+        "label_text": "Enclosure Type",
+        "value_cell": "J12",
+        "value_merge": "J12:L12",
+        "master_prefill": "OTE",
+        "instruction": "Enclosure type",
+        "note": "Prefilled in the blank master ('OTE'); both samples overwrite with '450-D'."
+      },
+      {
+        "id": "location_address",
+        "label_cell": "C13",
+        "label_text": "Location",
+        "value_cell": "C14",
+        "value_merge": "C14:F14",
+        "master_prefill": null,
+        "instruction": "Street address or nearest cross streets. If using cross streets, include direction location (ex NE corner of)",
+        "note": null
+      },
+      {
+        "id": "lat_long",
+        "label_cell": "G13",
+        "label_text": "Lat/Long",
+        "value_cell": "G14",
+        "value_merge": "G14:I14",
+        "master_prefill": null,
+        "instruction": "Latitude and longitude as shown in the field",
+        "note": "Free text; samples use two different formats."
+      },
+      {
+        "id": "placement_class",
+        "label_cell": "J13",
+        "label_text": "UG",
+        "value_cell": "J14",
+        "value_merge": "J14",
+        "master_prefill": "Underground",
+        "instruction": "Drop down options: Aerial, underground or inside plant location",
+        "note": "Aerial / Underground / ISP. Label cell reads 'UG' in the blank master."
+      },
+      {
+        "id": "pole_tag",
+        "label_cell": "K13",
+        "label_text": "Pole Tag",
+        "value_cell": "K14",
+        "value_merge": "K14:L14",
+        "master_prefill": "N/A",
+        "instruction": "If aerial, document the pole tag of the nearest pole",
+        "note": null
+      },
+      {
+        "id": "connected_sheaths",
+        "label_cell": "C15",
+        "label_text": "Connected Sheaths",
+        "value_cell": "C16",
+        "value_merge": "C16:D16",
+        "master_prefill": null,
+        "instruction": "Enter the total count of sheaths connected to the enclosure",
+        "note": null
+      },
+      {
+        "id": "total_couplers",
+        "label_cell": "E15",
+        "label_text": "Total Couplers",
+        "value_cell": "E16",
+        "value_merge": "E16:F16",
+        "master_prefill": null,
+        "instruction": "Enter total count of mux's/splitters in the enclosure",
+        "note": null
+      },
+      {
+        "id": "splices_performed",
+        "label_cell": "G15",
+        "label_text": "Splices Performed",
+        "value_cell": "G16",
+        "value_merge": "G16:H16",
+        "master_prefill": null,
+        "instruction": "Enter the total amount of splices performed during work visit",
+        "note": null
+      },
+      {
+        "id": "property_class",
+        "label_cell": "I15",
+        "label_text": "Private Property or ROW?",
+        "value_cell": "I16",
+        "value_merge": "I16:J16",
+        "master_prefill": "ROW",
+        "instruction": "Drop down options: Enclosure is located in private property or in the right of way",
+        "note": "Private Property or ROW."
+      },
+      {
+        "id": "otdr_performed",
+        "label_cell": "K15",
+        "label_text": "OTDR?",
+        "value_cell": "K16",
+        "value_merge": "K16:L16",
+        "master_prefill": "No",
+        "instruction": "Was an OTDR performed here? Drop down options: Yes or No",
+        "note": "Yes / No. Gates the OTDR Shots sheet."
+      }
+    ],
+    "notes_block": {
+      "header_cell": "N10",
+      "line_cells": [
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16"
+      ],
+      "line_merges": [
+        "N11:AV11",
+        "N12:AV12",
+        "N13:AV13",
+        "N14:AV14",
+        "N15:AV15",
+        "N16:AV16"
+      ]
+    },
+    "section_grid": {
+      "count": 15,
+      "rows": {
+        "section_header": 19,
+        "role": 20,
+        "cable_manufacturer": 21,
+        "cable_date": 22,
+        "cable_footage": 23,
+        "cable_id": 24,
+        "cable_count": 25
+      },
+      "rack_shelf_port_row": 33,
+      "work_performed_row": 35,
+      "freeform_pair_rows": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "freeform_grid_rows": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "row_labels": {
+        "19": "1",
+        "20": "Input",
+        "21": "Cable Manufacture",
+        "22": "Cable Date",
+        "23": "Cable Footage",
+        "24": "Cable ID",
+        "25": "Cable Count",
+        "33": "Rack/Shelf/Port (ISP)",
+        "35": "Work Performed"
+      },
+      "sections": [
+        {
+          "index": 1,
+          "label_col": "C",
+          "value_col": "D",
+          "block_range_row19": "C19:E19",
+          "value_merge_row21": "D21:E21",
+          "block_span": 3
+        },
+        {
+          "index": 2,
+          "label_col": "F",
+          "value_col": "G",
+          "block_range_row19": "F19:H19",
+          "value_merge_row21": "G21:H21",
+          "block_span": 3
+        },
+        {
+          "index": 3,
+          "label_col": "I",
+          "value_col": "J",
+          "block_range_row19": "I19:K19",
+          "value_merge_row21": "J21:K21",
+          "block_span": 3
+        },
+        {
+          "index": 4,
+          "label_col": "L",
+          "value_col": "M",
+          "block_range_row19": "L19:O19",
+          "value_merge_row21": "M21:O21",
+          "block_span": 4
+        },
+        {
+          "index": 5,
+          "label_col": "P",
+          "value_col": "Q",
+          "block_range_row19": "P19:R19",
+          "value_merge_row21": "Q21:R21",
+          "block_span": 3
+        },
+        {
+          "index": 6,
+          "label_col": "S",
+          "value_col": "T",
+          "block_range_row19": "S19:U19",
+          "value_merge_row21": "T21:U21",
+          "block_span": 3
+        },
+        {
+          "index": 7,
+          "label_col": "V",
+          "value_col": "W",
+          "block_range_row19": "V19:X19",
+          "value_merge_row21": "W21:X21",
+          "block_span": 3
+        },
+        {
+          "index": 8,
+          "label_col": "Y",
+          "value_col": "Z",
+          "block_range_row19": "Y19:AA19",
+          "value_merge_row21": "Z21:AA21",
+          "block_span": 3
+        },
+        {
+          "index": 9,
+          "label_col": "AB",
+          "value_col": "AC",
+          "block_range_row19": "AB19:AD19",
+          "value_merge_row21": "AC21:AD21",
+          "block_span": 3
+        },
+        {
+          "index": 10,
+          "label_col": "AE",
+          "value_col": "AF",
+          "block_range_row19": "AE19:AG19",
+          "value_merge_row21": "AF21:AG21",
+          "block_span": 3
+        },
+        {
+          "index": 11,
+          "label_col": "AH",
+          "value_col": "AI",
+          "block_range_row19": "AH19:AJ19",
+          "value_merge_row21": "AI21:AJ21",
+          "block_span": 3
+        },
+        {
+          "index": 12,
+          "label_col": "AK",
+          "value_col": "AL",
+          "block_range_row19": "AK19:AM19",
+          "value_merge_row21": "AL21:AM21",
+          "block_span": 3
+        },
+        {
+          "index": 13,
+          "label_col": "AN",
+          "value_col": "AO",
+          "block_range_row19": "AN19:AP19",
+          "value_merge_row21": "AO21:AP21",
+          "block_span": 3
+        },
+        {
+          "index": 14,
+          "label_col": "AQ",
+          "value_col": "AR",
+          "block_range_row19": "AQ19:AS19",
+          "value_merge_row21": "AR21:AS21",
+          "block_span": 3
+        },
+        {
+          "index": 15,
+          "label_col": "AT",
+          "value_col": "AU",
+          "block_range_row19": "AT19:AV19",
+          "value_merge_row21": "AU21:AV21",
+          "block_span": 3
+        }
+      ]
+    }
+  },
+  "pictures": {
+    "sheet": "Pictures",
+    "slots": [
+      {
+        "id": "enclosure_location",
+        "group": "enclosure",
+        "caption": "Location (Requires Point of Reference/Landmark)",
+        "caption_cell": "B4:F4",
+        "image_cell": "B5",
+        "image_range": "B5:F16"
+      },
+      {
+        "id": "enclosure_before",
+        "group": "enclosure",
+        "caption": "Before",
+        "caption_cell": "G4:K4",
+        "image_cell": "G5",
+        "image_range": "G5:K16"
+      },
+      {
+        "id": "enclosure_after",
+        "group": "enclosure",
+        "caption": "After",
+        "caption_cell": "L4:P4",
+        "image_cell": "L5",
+        "image_range": "L5:P16"
+      },
+      {
+        "id": "splicing_1",
+        "group": "splicing",
+        "caption": "1",
+        "caption_cell": "B19:F19",
+        "image_cell": "B20",
+        "image_range": "B20:F31"
+      },
+      {
+        "id": "splicing_2",
+        "group": "splicing",
+        "caption": "2",
+        "caption_cell": "G19:K19",
+        "image_cell": "G20",
+        "image_range": "G20:K31"
+      },
+      {
+        "id": "splicing_3",
+        "group": "splicing",
+        "caption": "3",
+        "caption_cell": "L19:P19",
+        "image_cell": "L20",
+        "image_range": "L20:P31"
+      },
+      {
+        "id": "splicing_4",
+        "group": "splicing",
+        "caption": "4",
+        "caption_cell": "B32:F32",
+        "image_cell": "B33",
+        "image_range": "B33:F44"
+      },
+      {
+        "id": "splicing_5",
+        "group": "splicing",
+        "caption": "5",
+        "caption_cell": "G32:K32",
+        "image_cell": "G33",
+        "image_range": "G33:K44"
+      },
+      {
+        "id": "splicing_6",
+        "group": "splicing",
+        "caption": "6",
+        "caption_cell": "L32:P32",
+        "image_cell": "L33",
+        "image_range": "L33:P44"
+      }
+    ]
+  },
+  "otdr": {
+    "sheet": "OTDR Shots",
+    "state": "hidden",
+    "slots": [
+      {
+        "id": "hub_to_endsite_forward",
+        "caption": "Hub To Endsite Forward",
+        "caption_cell": "B3:E3",
+        "fiber_label_cell": "F3:I3",
+        "fiber_value_cell": "G3",
+        "image_cell": "B4",
+        "image_range": "B4:I19"
+      },
+      {
+        "id": "hub_to_endsite_return",
+        "caption": "Hub To Endsite Return",
+        "caption_cell": "J3:M3",
+        "fiber_label_cell": "N3:Q3",
+        "fiber_value_cell": "O3",
+        "image_cell": "J4",
+        "image_range": "J4:Q19"
+      }
+    ],
+    "note": "The blank master exposes one forward/return pair. The hidden Example sheet shows two pairs (hub-to-endsite and endsite-to-hub), so multi-direction OTDR capacity is an open template question."
+  },
+  "master_prefill_warnings": [
+    {
+      "cell": "E4",
+      "field": "technician",
+      "value": "<redacted:technician:13 chars>"
+    },
+    {
+      "cell": "H4",
+      "field": "business_partner",
+      "value": "Sammons Construction"
+    },
+    {
+      "cell": "H8",
+      "field": "job_type",
+      "value": "SDU"
+    },
+    {
+      "cell": "H12",
+      "field": "enclosure_manufacturer",
+      "value": "CommScope"
+    },
+    {
+      "cell": "J12",
+      "field": "enclosure_type",
+      "value": "OTE"
+    },
+    {
+      "cell": "J14",
+      "field": "placement_class",
+      "value": "Underground"
+    },
+    {
+      "cell": "K14",
+      "field": "pole_tag",
+      "value": "N/A"
+    },
+    {
+      "cell": "I16",
+      "field": "property_class",
+      "value": "ROW"
+    },
+    {
+      "cell": "K16",
+      "field": "otdr_performed",
+      "value": "No"
+    }
+  ],
+  "master_stray_values": [
+    {
+      "cell": "F44",
+      "value": "fdssd"
+    }
+  ]
+}
